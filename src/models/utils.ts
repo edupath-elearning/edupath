@@ -3,6 +3,7 @@ import mongoose, { Query, Schema } from 'mongoose';
 import { Model, Document } from 'mongoose';
 
 export type IMyDocument = {
+  deletedAt?: Date;
   createdAt: Date;
   updatedAt: Date;
 } & Document;

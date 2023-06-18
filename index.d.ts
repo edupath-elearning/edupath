@@ -1,4 +1,4 @@
-import { Socket } from "socket.io";
+import { Socket } from 'socket.io';
 import { ClientToServerEvents, InterServerEvents, ServerToClientEvents, SocketData } from './src/socket/types';
 
 declare module 'worker_threads' {
@@ -16,5 +16,11 @@ declare module 'worker_threads' {
 declare module 'fastify' {
   interface FastifyRequest {
     io: Socket<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>;
+  }
+}
+
+declare module 'fastify' {
+  interface FastifyRequest {
+    user?: UserJwt;
   }
 }

@@ -4,7 +4,6 @@ import SoftDeletableModel, { IMyDocument, softDeletePlugin } from './utils';
 export type IDetail = {
   section_id: Schema.Types.ObjectId;
   tag_id: Schema.Types.ObjectId;
-  course_id: Schema.Types.ObjectId;
   detail_name: string;
 } & IMyDocument;
 
@@ -15,10 +14,6 @@ const detailSchema = new Schema<IDetail>(
       required: true,
     },
     tag_id: {
-      type: Schema.Types.ObjectId,
-      required: true,
-    },
-    course_id: {
       type: Schema.Types.ObjectId,
       required: true,
     },
