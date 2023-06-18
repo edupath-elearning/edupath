@@ -4,6 +4,7 @@ import section from './section';
 import course from './course';
 import tag from './tag';
 import detail from './detail';
+import chapter from './chapter';
 
 export default async (server: FastifyInstance) => {
   server.register(maintype, { prefix: 'maintype' });
@@ -11,4 +12,5 @@ export default async (server: FastifyInstance) => {
   server.register(course, { prefix: 'course' });
   server.register(tag, { prefix: 'tag' });
   server.register(detail, { prefix: 'detail' });
+  server.register(chapter, { prefix: 'chapter' });
 };

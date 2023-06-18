@@ -6,7 +6,6 @@ export const add = async (
     Body: {
       section_id: string;
       tag_id: string;
-      course_id: string;
       detail_name: string;
     };
   }>,
@@ -14,13 +13,11 @@ export const add = async (
 ) => {
   const section_id = request.body.section_id;
   const tag_id = request.body.tag_id;
-  const course_id = request.body.course_id;
   const detail_name = request.body.detail_name;
 
   const newDetail = new Detail({
     section_id,
     tag_id,
-    course_id,
     detail_name,
   });
   const result = await newDetail.save();

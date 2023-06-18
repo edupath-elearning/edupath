@@ -3,6 +3,7 @@ import section from './section.js';
 import course from './course.js';
 import tag from './tag.js';
 import detail from './detail.js';
+import chapter from './chapter.js';
 
 var admin = async (server) => {
     server.register(maintype, { prefix: 'maintype' });
@@ -10,6 +11,7 @@ var admin = async (server) => {
     server.register(course, { prefix: 'course' });
     server.register(tag, { prefix: 'tag' });
     server.register(detail, { prefix: 'detail' });
+    server.register(chapter, { prefix: 'chapter' });
 };
 
 export { admin as default };
