@@ -3,7 +3,7 @@ import { IMyDocument, softDeletePlugin } from './utils';
 
 export type IToken = {
   data: string;
-  user: Schema.Types.ObjectId;
+  user_id: Schema.Types.ObjectId;
 } & IMyDocument;
 
 const tokenSchema = new Schema<IToken>(
@@ -12,7 +12,7 @@ const tokenSchema = new Schema<IToken>(
       type: String,
       required: true,
     },
-    user: {
+    user_id: {
       type: Schema.Types.ObjectId,
       required: true,
     },

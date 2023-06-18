@@ -3,19 +3,19 @@ import { EPaymentStatus } from '~types/payment';
 import SoftDeletableModel, { IMyDocument, softDeletePlugin } from './utils';
 
 export type IPayment = {
-  user: Schema.Types.ObjectId;
-  course: Schema.Types.ObjectId;
+  user_id: Schema.Types.ObjectId;
+  course_id: Schema.Types.ObjectId;
   total_amount: number;
   payment_status: EPaymentStatus;
 } & IMyDocument;
 
 const paymentSchema = new Schema<IPayment>(
   {
-    user: {
+    user_id: {
       type: Schema.Types.ObjectId,
       required: true,
     },
-    course: {
+    course_id: {
       type: Schema.Types.ObjectId,
       required: true,
     },
