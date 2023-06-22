@@ -3,7 +3,6 @@ import { Detail } from '../../models/Detail.js';
 import { Maintype } from '../../models/Maintype.js';
 import { Path } from '../../models/Path.js';
 import { Section } from '../../models/Section.js';
-import { Tag } from '../../models/Tag.js';
 import { User } from '../../models/User.js';
 import { quickSort } from '../../utils/quickSort.js';
 
@@ -55,8 +54,10 @@ const myRoadmap = async (request, reply) => {
 const getCoursesSimilarTag = async (request, reply) => {
     const detailId = request.query.detail_id;
     const detail = await Detail.findById(detailId, { _id: 1, tag_id: 1 });
-    const tag = await Tag.findById(detail?.tag_id, { _id: 1 });
-    const details = await Detail.find({ tag_id: { $in: tag?._id } }, { _id: 1 });
+    const section = await Section.findById(detail?.section_id, { _id: 1, maintype_id: 1 });
+    const maintype = await Maintype.findById(section?.maintype_id, { _id: 1 });
+    const sections = await Section.find({ maintype_id: maintype._id }, { _id: 1 });
+    const details = await Detail.find({ section_id: { $in: sections.map((x) => x._id) } }, { _id: 1 });
     const courses = await Course.find({ detail_id: { $in: details.map((x) => x._id) } }, { _id: 1 });
     await reply.code(200).send(courses.map((x) => ({
         _id: x._id,

@@ -4,6 +4,7 @@ import auth from './auth';
 import recommend from './recommend';
 import roadmap from './roadmap';
 import course from './course';
+import payment from './payment';
 
 export default async (server: FastifyInstance, options: FastifyPluginOptions) => {
   server.get('/', {}, async (request, reply) => {
@@ -14,4 +15,5 @@ export default async (server: FastifyInstance, options: FastifyPluginOptions) =>
   server.register(recommend,{ prefix: 'recommend' });
   server.register(roadmap,{ prefix: 'roadmap' });
   server.register(course,{ prefix: 'course' });
+  server.register(payment,{ prefix: 'payment' });
 };
