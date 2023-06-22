@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import admin from './admin/index';
 import auth from './auth';
+import recommend from './recommend';
 
 export default async (server: FastifyInstance, options: FastifyPluginOptions) => {
   server.get('/', {}, async (request, reply) => {
@@ -8,4 +9,5 @@ export default async (server: FastifyInstance, options: FastifyPluginOptions) =>
   });
   server.register(admin, { prefix: 'admin' });
   server.register(auth, { prefix: 'auth' });
+  server.register(recommend,{ prefix: 'recommend' });
 };

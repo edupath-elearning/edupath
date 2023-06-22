@@ -6,6 +6,7 @@ declare global {
       NODE_ENV: 'development' | 'production';
       PYTHON3: string;
       DATABASE: string;
+      HOST: string;
       IPFS_HOST: string;
       IPFS_PORT: string;
       IPFS_PROTOCOL: string;

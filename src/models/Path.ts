@@ -3,8 +3,8 @@ import SoftDeletableModel, { IMyDocument, softDeletePlugin } from './utils';
 
 export type IPath = {
   user_id: Schema.Types.ObjectId;
-  is_completed: boolean;
-  is_important: boolean;
+  is_completed: Schema.Types.ObjectId[];
+  is_important: Schema.Types.ObjectId[];
 } & IMyDocument;
 
 const pathSchema = new Schema<IPath>(
@@ -14,14 +14,14 @@ const pathSchema = new Schema<IPath>(
       required: true,
     },
     is_completed: {
-      type: Boolean,
+      type: [Schema.Types.ObjectId],
       required: true,
-      default: false,
+      default: [],
     },
     is_important: {
-      type: Boolean,
+      type: [Schema.Types.ObjectId],
       required: true,
-      default: false,
+      default: [],
     },
   },
   { timestamps: true },

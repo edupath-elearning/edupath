@@ -35,13 +35,13 @@ app.setErrorHandler(async (error, request, reply) => {
   reply.status(500).send(error);
 });
 const { pubClient, subClient } = await redisServer();
-
 await Promise.all([
   app.register(cors, {
     credentials: true,
     origin: [
       'http://localhost:3000',
       'http://localhost:3001',
+      `http://192.168.1.7:3001`,
       'https://studio.apollographql.com',
       'https://iscv.ftisu.vn',
       'https://business.iscv.ftisu.vn',
@@ -52,6 +52,7 @@ await Promise.all([
       origin: [
         'http://localhost:3000',
         'http://localhost:3001',
+        `http://192.168.1.7:3001`,
         'https://studio.apollographql.com',
         'https://iscv.ftisu.vn',
         'https://business.iscv.ftisu.vn',
@@ -115,7 +116,7 @@ app.use(
 
 // interview(app, pubClient as RedisClientType, subClient as RedisClientType);
 
-app.listen({ port: Number(process.env.PORT) || 4000 }, (err, address) => {
+app.listen({ port: Number(process.env.PORT) || 4000, host: process.env.HOST }, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);

@@ -40,6 +40,20 @@ const userSchema = new Schema({
     job: {
         type: String,
     },
+    recommend: {
+        type: [
+            {
+                maintype: {
+                    type: Schema.Types.ObjectId,
+                    required: true,
+                },
+                percent: {
+                    type: Number,
+                    required: true,
+                },
+            },
+        ],
+    },
 }, { timestamps: true });
 userSchema.plugin(softDeletePlugin, { deletedAtFieldName: 'deletedAt', overrideMethods: true });
 const User = model('user', userSchema);

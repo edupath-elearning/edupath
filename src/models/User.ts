@@ -14,6 +14,10 @@ export type IUser = {
   birthday?: Date;
   facebook?: string;
   job?: string;
+  recommend?: {
+    maintype: Schema.Types.ObjectId;
+    percent: number;
+  }[];
 } & IMyDocument;
 
 const userSchema = new Schema<IUser>(
@@ -54,6 +58,20 @@ const userSchema = new Schema<IUser>(
     },
     job: {
       type: String,
+    },
+    recommend: {
+      type: [
+        {
+          maintype: {
+            type: Schema.Types.ObjectId,
+            required: true,
+          },
+          percent: {
+            type: Number,
+            required: true,
+          },
+        },
+      ],
     },
   },
   { timestamps: true },

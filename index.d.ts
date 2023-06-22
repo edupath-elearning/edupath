@@ -1,6 +1,6 @@
 import { Socket } from 'socket.io';
 import { ClientToServerEvents, InterServerEvents, ServerToClientEvents, SocketData } from './src/socket/types';
-
+import { UserJwt } from '~types/auth';
 declare module 'worker_threads' {
   interface MessagePort {
     postMessage(
