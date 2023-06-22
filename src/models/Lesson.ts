@@ -5,6 +5,7 @@ export type ILesson = {
   chapter_id: Schema.Types.ObjectId;
   lesson_name: string;
   duration: number;
+  order: number;
 } & IMyDocument;
 
 const lessonSchema = new Schema<ILesson>(
@@ -18,6 +19,10 @@ const lessonSchema = new Schema<ILesson>(
       required: true,
     },
     duration: {
+      type: Number,
+      required: true,
+    },
+    order: {
       type: Number,
       required: true,
     },

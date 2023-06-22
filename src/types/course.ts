@@ -1,3 +1,5 @@
+import { IMyDocument } from '~models/utils';
+
 export enum ELevel {
   NONE,
   ALL_LEVELS,
@@ -26,3 +28,4 @@ export enum ECourseStatus {
   CLOSE,
   FULL_ACCESS,
 }
+

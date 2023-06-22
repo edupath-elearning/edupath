@@ -14,6 +14,10 @@ const lessonSchema = new Schema({
         type: Number,
         required: true,
     },
+    order: {
+        type: Number,
+        required: true,
+    },
 }, { timestamps: true });
 lessonSchema.plugin(softDeletePlugin, { deletedAtFieldName: 'deletedAt', overrideMethods: true });
 const Lesson = model('lesson', lessonSchema);

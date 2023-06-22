@@ -4,6 +4,7 @@ import SoftDeletableModel, { IMyDocument, softDeletePlugin } from './utils';
 export type ISection = {
   maintype_id: Schema.Types.ObjectId;
   section_name: string;
+  order: number;
 } & IMyDocument;
 
 const sectionSchema = new Schema<ISection>(
@@ -14,6 +15,10 @@ const sectionSchema = new Schema<ISection>(
     },
     section_name: {
       type: String,
+      required: true,
+    },
+    order: {
+      type: Number,
       required: true,
     },
   },

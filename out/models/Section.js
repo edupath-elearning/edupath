@@ -10,6 +10,10 @@ const sectionSchema = new Schema({
         type: String,
         required: true,
     },
+    order: {
+        type: Number,
+        required: true,
+    },
 }, { timestamps: true });
 sectionSchema.plugin(softDeletePlugin, { deletedAtFieldName: 'deletedAt', overrideMethods: true });
 const Section = model('section', sectionSchema);

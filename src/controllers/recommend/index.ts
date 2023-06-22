@@ -86,10 +86,14 @@ export const processRecommend = async (
           Tag.find({ tag_name: { $in: type.done } }, { _id: 1 }),
           Tag.find({ tag_name: { $in: type.recommend } }, { _id: 1 }),
         ]);
+        const [detailCompleteds, detailImportants] = await Promise.all([
+          Detail.find({ tag_id: { $in: tagCompledteds.map((x) => x._id) } }, { _id: 1 }),
+          Detail.find({ tag_id: { $in: tagImportants.map((x) => x._id) } }, { _id: 1 }),
+        ]);
         const newPath = new Path({
           user_id: user?._id,
-          is_completed: tagCompledteds.map((x) => x._id),
-          is_important: tagImportants.map((x) => x._id),
+          is_completed: detailCompleteds.map((x) => x._id),
+          is_important: detailImportants.map((x) => x._id),
         });
         return await newPath.save();
       }),
@@ -111,6 +115,12 @@ export const chooseMaintype = async (
 ) => {
   const choosen = request.query.choosen;
   const user = request.user!;
-  const result = await User.findByIdAndUpdate(user._id, { $pull: { recommend: { $ne: choosen } } });
+  const result = await User.findByIdAndUpdate(user._id, {
+    $pull: {
+      recommend: {
+        maintype: { $ne: choosen },
+      },
+    },
+  });
   await reply.code(200).send(result);
 };

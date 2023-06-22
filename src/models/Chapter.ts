@@ -4,6 +4,7 @@ import SoftDeletableModel, { IMyDocument, softDeletePlugin } from './utils';
 export type IChapter = {
   course_id: Schema.Types.ObjectId;
   chapter_name: string;
+  order: number;
 } & IMyDocument;
 
 const chapterSchema = new Schema<IChapter>(
@@ -14,6 +15,10 @@ const chapterSchema = new Schema<IChapter>(
     },
     chapter_name: {
       type: String,
+      required: true,
+    },
+    order: {
+      type: Number,
       required: true,
     },
   },

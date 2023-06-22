@@ -10,6 +10,10 @@ const chapterSchema = new Schema({
         type: String,
         required: true,
     },
+    order: {
+        type: Number,
+        required: true,
+    },
 }, { timestamps: true });
 chapterSchema.plugin(softDeletePlugin, { deletedAtFieldName: 'deletedAt', overrideMethods: true });
 const Chapter = model('chapter', chapterSchema);
