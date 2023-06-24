@@ -82,7 +82,7 @@ export const getCoursesSimilarTag = async (
   reply: FastifyReply,
 ) => {
   const detailId = request.query.detail_id;
-  const detail = await Detail.findById(detailId, { _id: 1, tag_id: 1 });
+  const detail = await Detail.findById(detailId, { _id: 1, section_id: 1 });
   const section = await Section.findById(detail?.section_id, { _id: 1, maintype_id: 1 });
   const maintype = await Maintype.findById(section?.maintype_id, { _id: 1 });
   const sections = await Section.find({ maintype_id: maintype!._id }, { _id: 1 });

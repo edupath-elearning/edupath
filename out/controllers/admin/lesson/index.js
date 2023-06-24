@@ -12,7 +12,7 @@ const add = async (request, reply) => {
         duration,
     });
     const result = await newLesson.save();
-    const folder_path = `./public/lesson/${result._id}/`;
+    const folder_path = `./stores/lesson/${result._id}/`;
     if (!fs.existsSync(folder_path)) {
         await fs.promises.mkdir(folder_path, { recursive: true });
     }

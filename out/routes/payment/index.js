@@ -1,6 +1,8 @@
-import { getCoursesSimilar } from '../../controllers/payment/index.js';
+import { getCoursesSimilar, getCoursePrice, checkPayment, makePayment } from '../../controllers/payment/index.js';
+import { verifyAccessToken } from '../../middlewares/auth/index.js';
 
 var payment = async (server) => {
+    server.addHook('preHandler', verifyAccessToken);
     server.get('/courses_similar', {
         schema: {
             querystring: {
@@ -12,6 +14,39 @@ var payment = async (server) => {
             },
         },
     }, getCoursesSimilar);
+    server.get('/course_price', {
+        schema: {
+            querystring: {
+                type: 'object',
+                properties: {
+                    course_id: { type: 'string' },
+                },
+                required: ['course_id'],
+            },
+        },
+    }, getCoursePrice);
+    server.get('/check_payment', {
+        schema: {
+            querystring: {
+                type: 'object',
+                properties: {
+                    course_id: { type: 'string' },
+                },
+                required: ['course_id'],
+            },
+        },
+    }, checkPayment);
+    server.get('/make_payment', {
+        schema: {
+            querystring: {
+                type: 'object',
+                properties: {
+                    course_id: { type: 'string' },
+                },
+                required: ['course_id'],
+            },
+        },
+    }, makePayment);
 };
 
 export { payment as default };
