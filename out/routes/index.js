@@ -5,6 +5,7 @@ import roadmap from './roadmap/index.js';
 import course from './course/index.js';
 import payment from './payment/index.js';
 import learning from './learning/index.js';
+import chatbot from './chatbot/index.js';
 
 var routes = async (server, options) => {
     server.get('/', {}, async (request, reply) => {
@@ -17,6 +18,7 @@ var routes = async (server, options) => {
     server.register(course, { prefix: 'course' });
     server.register(payment, { prefix: 'payment' });
     server.register(learning, { prefix: 'learning' });
+    server.register(chatbot, { prefix: 'chatbot' });
 };
 
 export { routes as default };
