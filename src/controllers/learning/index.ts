@@ -1,7 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import fs from 'fs';
 import path from 'path';
-export const getVideo = async (request: FastifyRequest<{ Params: { lesson_id: string } }>, reply: FastifyReply) => {
+export const getVideo = async (
+  request: FastifyRequest<{ Params: { lesson_id: string }; Querystring: { course_id: string } }>,
+  reply: FastifyReply,
+) => {
   const lessonId = request.params.lesson_id;
 
   const videoPath = path.join(`./stores/lesson/${lessonId}/lesson_video.mp4`); // Path to the video file
@@ -16,6 +19,6 @@ export const getVideo = async (request: FastifyRequest<{ Params: { lesson_id: st
   const videoStream = fs.createReadStream(videoPath);
 
   // Pipe the video stream to the response
-//   reply.send(videoStream);
+  //   reply.send(videoStream);
   await reply.send(videoStream);
 };
